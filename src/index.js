@@ -36,3 +36,25 @@ function render() {
 }
 
 render();
+
+function buttonsFunctionality() {
+	const nextBtn = document.querySelector('.next');
+
+	nextBtn.addEventListener('click', () => {
+		const el = imgArray.shift();
+		imgArray.push(el);
+		render();
+		console.log(imgArray);
+	});
+
+	const prevBtn = document.querySelector('.prev');
+
+	prevBtn.addEventListener('click', () => {
+		console.log(imgArray);
+		const el = imgArray.pop();
+		imgArray.unshift(el);
+		render();
+	});
+}
+
+buttonsFunctionality();
