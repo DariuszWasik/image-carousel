@@ -7,7 +7,7 @@
 }
 
 body {
-	background-color: rebeccapurple;
+	/* background-color: rebeccapurple; */
 }
 
 * {
@@ -58,7 +58,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	border-radius: 1rem;
-	background: lightcoral; /* inny kolor, żeby odróżnić */
+	/* background: lightcoral; inny kolor, żeby odróżnić */
 	transform: rotateY(135deg); /* lustrzane odbicie bocznej ściany */
 	transform-style: preserve-3d;
 }
@@ -76,7 +76,7 @@ body {
 }
 
 .current-slide {
-	background-color: antiquewhite;
+	/* background-color: antiquewhite; */
 	height: calc(var(--slide-height) * 2);
 	width: calc(var(--slide-height) * 2);
 	border-radius: 1rem;
