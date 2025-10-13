@@ -1,4 +1,111 @@
 /* styles.css */
+
+:root {
+	--viewport-width: 80%;
+	--slide-height: 8rem;
+	/* --slide-height: calc(var(--viewport-width) * 0.25); */
+}
+
 body {
 	background-color: rebeccapurple;
+}
+
+* {
+	border: 1px solid black;
+}
+
+.viewport {
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid red;
+	max-width: var(--viewport-width);
+	/* display: grid; */
+	/* grid-template: repeat(); */
+	display: flex;
+	overflow: hidden;
+	justify-content: center;
+}
+
+.container {
+	position: relative;
+	perspective: 600px;
+	padding: 1rem;
+	padding-bottom: 2rem;
+	border: 1px solid green;
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	align-items: center;
+	justify-items: center;
+	/* grid-template-columns: repeat(5, 1fr); */
+	gap: 0.5rem;
+	overflow-x: scroll;
+	scrollbar-width: none;
+}
+
+/* .slide {
+	height: var(--slide-height);
+	width: var(--slide-height);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1rem;
+} */
+
+.slide-prev {
+	height: var(--slide-height);
+	width: var(--slide-height);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1rem;
+	background: lightcoral; /* inny kolor, żeby odróżnić */
+	transform: rotateY(135deg); /* lustrzane odbicie bocznej ściany */
+	transform-style: preserve-3d;
+}
+
+.slide-next {
+	height: var(--slide-height);
+	width: var(--slide-height);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1rem;
+	background: lightblue;
+	transform: rotateY(45deg); /* kąt boczny */
+	transform-style: preserve-3d;
+}
+
+.current-slide {
+	background-color: antiquewhite;
+	height: calc(var(--slide-height) * 2);
+	width: calc(var(--slide-height) * 2);
+	border-radius: 1rem;
+}
+
+.prev,
+.next {
+	position: absolute;
+	top: calc(50% +2rem);
+	background-color: hsl(110, 14%, 33%, 0.4);
+	border: none;
+}
+
+.prev:hover,
+.next:hover {
+	color: red;
+	cursor: pointer;
+}
+
+.prev {
+	left: 0;
+}
+
+.next {
+	right: 0;
+}
+
+.dots {
+	position: absolute;
+	bottom: 0;
+	width: var(--viewport-width);
 }
