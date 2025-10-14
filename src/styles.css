@@ -9,15 +9,15 @@
 body {
 	background-color: rebeccapurple;
 }
-
+/* 
 * {
 	border: 1px solid black;
-}
+} */
 
 .viewport {
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	max-width: var(--viewport-width);
 	/* display: grid; */
 	/* grid-template: repeat(); */
@@ -31,7 +31,7 @@ body {
 	perspective: 600px;
 	padding: 1rem;
 	padding-bottom: 2rem;
-	border: 1px solid green;
+	/* border: 1px solid green; */
 	display: grid;
 	grid-template-columns: 1fr 2fr 1fr;
 	align-items: center;
@@ -106,6 +106,8 @@ body {
 
 .dots {
 	position: absolute;
-	bottom: 0;
-	width: var(--viewport-width);
+	bottom: 5px;
+	width: fit-content;
+	display: flex;
+	justify-content: center;
 }

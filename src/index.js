@@ -70,22 +70,34 @@ function render() {
 }
 
 render();
+let startCarousel = setInterval(nextBtnFunc, 5000);
+// startCarousel();
+function stop() {
+	clearInterval(startCarousel);
+}
 
 function buttonsFunctionality() {
 	const nextBtn = document.querySelector('.next');
 
 	nextBtn.addEventListener('click', () => {
+		// clearInterval(startCarousel);
+		stop();
 		const el = arrayObj.shift();
 		arrayObj.push(el);
 		render();
+
+		startCarousel = setInterval(nextBtnFunc, 5000);
 	});
 
 	const prevBtn = document.querySelector('.prev');
 
 	prevBtn.addEventListener('click', () => {
+		stop();
 		const el = arrayObj.pop();
 		arrayObj.unshift(el);
 		render();
+		startCarousel = setInterval(nextBtnFunc, 5000);
+		// startCarousel();
 	});
 }
 
@@ -101,4 +113,10 @@ function setDot() {
 	const num = +id.replace(/\D/g, '');
 	console.log(num);
 	myDots[num].checked = true;
+}
+
+function nextBtnFunc() {
+	const el = arrayObj.shift();
+	arrayObj.push(el);
+	render();
 }
