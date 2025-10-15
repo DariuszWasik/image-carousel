@@ -12,15 +12,20 @@ import a8 from '/assets/a8.jpg';
 
 const imgArray = [a1, a2, a3, a4, a5, a6, a7, a8];
 
-const arrayObj = [];
+let arrayObj = [];
 imgArray.forEach((el, index) => {
 	arrayObj.push({
 		src: el,
 		id: `choice${index}`,
+		num: +`choice${index}`.replace(/\D/g, ''),
 	});
 	// console.log(el, index);
 });
 console.log(arrayObj);
+
+const copyInOrder = JSON.parse(JSON.stringify(arrayObj));
+
+console.log('moja copia', copyInOrder);
 
 // const imgAllwaysSameOrder = [a1, a2, a3, a4, a5, a6, a7, a8];
 const dotsContainer = document.querySelector('.dots');
@@ -31,6 +36,7 @@ for (let i = 0; i < arrayObj.length; i++) {
 	choice.type = 'radio';
 	choice.name = 'currentImage';
 	choice.id = arrayObj[i].id;
+	choice.num = arrayObj[i].num;
 	choice.style.width = '1rem';
 	dotsContainer.append(choice);
 	console.log(choice);
@@ -42,7 +48,7 @@ console.log(dotsContainer);
 // dotsContainer.forEach((el) => myDots.push(el));
 // console.log(myDots);
 const myDots = Array.from(dotsContainer.querySelectorAll('input'));
-console.log(myDots);
+// console.log(myDots);
 
 function render() {
 	const mainIMG = document.createElement('img');
@@ -70,7 +76,7 @@ function render() {
 }
 
 render();
-let startCarousel = setInterval(nextBtnFunc, 5000);
+let startCarousel = setInterval(nextBtnFunc, 3000);
 // startCarousel();
 function stop() {
 	clearInterval(startCarousel);
@@ -86,7 +92,7 @@ function buttonsFunctionality() {
 		arrayObj.push(el);
 		render();
 
-		startCarousel = setInterval(nextBtnFunc, 5000);
+		startCarousel = setInterval(nextBtnFunc, 3000);
 	});
 
 	const prevBtn = document.querySelector('.prev');
@@ -96,7 +102,7 @@ function buttonsFunctionality() {
 		const el = arrayObj.pop();
 		arrayObj.unshift(el);
 		render();
-		startCarousel = setInterval(nextBtnFunc, 5000);
+		startCarousel = setInterval(nextBtnFunc, 3000);
 		// startCarousel();
 	});
 }
@@ -108,11 +114,11 @@ buttonsFunctionality();
 // myDots[3].checked = true;
 
 function setDot() {
-	console.log('siemmmaaa', arrayObj[0].id);
-	const id = arrayObj[0].id;
-	const num = +id.replace(/\D/g, '');
-	console.log(num);
-	myDots[num].checked = true;
+	// console.log(arrayObj[0].id);
+	// const id = arrayObj[0].id;
+	// const num = +id.replace(/\D/g, '');
+	// console.log(num);
+	myDots[arrayObj[0].num].checked = true;
 }
 
 function nextBtnFunc() {
@@ -120,3 +126,31 @@ function nextBtnFunc() {
 	arrayObj.push(el);
 	render();
 }
+
+// myDots[2].addEventListener('click', () => {
+// 	console.log('youve clicked me');
+// 	console.log(myDots, '-myDots', myDots[2].num);
+// 	const position = arrayObj.map((e) => e.num).indexOf(myDots[2].num);
+// 	console.log(position, 'position');
+// 	// console.log(copyInOrder.splice(0, 3));
+// 	// console.log(copyInOrder);
+// 	const copyOfCopyInOrder = JSON.parse(JSON.stringify(copyInOrder));
+// 	const beforeMyDot = copyOfCopyInOrder.splice(0, 2);
+// 	console.log(beforeMyDot, copyOfCopyInOrder);
+// 	const newArray = copyOfCopyInOrder.concat(beforeMyDot);
+// 	console.log(newArray);
+// 	arrayObj = newArray;
+// 	render();
+// });
+
+myDots.forEach((e) => {
+	e.addEventListener('click', () => {
+		const copyOfCopyInOrder = JSON.parse(JSON.stringify(copyInOrder));
+		const beforeMyDot = copyOfCopyInOrder.splice(0, e.num);
+		console.log(beforeMyDot, copyOfCopyInOrder);
+		const newArray = copyOfCopyInOrder.concat(beforeMyDot);
+		console.log(newArray);
+		arrayObj = newArray;
+		render();
+	});
+});
